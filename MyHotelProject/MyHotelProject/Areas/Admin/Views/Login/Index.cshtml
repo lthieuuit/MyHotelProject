@@ -27,6 +27,7 @@
                                 <div class="card-body">
                                     @using (Html.BeginForm("Login", "Login", FormMethod.Post))
                                     {
+                                        @Html.ValidationSummary(false, "", "Error");
                                         <div class="form-group">
                                             @Html.TextBoxFor(model=>model.UserName, new {@class = "form-control",@autofocus = "autofocus" })
                                         </div>
