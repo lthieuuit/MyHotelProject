@@ -60,9 +60,53 @@
     <div class="container-fluid">
         @foreach (var item in room)
         {
-            <div class="row">
-                @if (@item.ID == 2)
-                {
+        <div class="row">
+            @switch (item.ID)
+            {
+                case 1:
+                    <div class="col-lg-6">
+                        <div class="ri-slider-item">
+                            <div class="ri-sliders owl-carousel">
+                                <div class="single-img set-bg" data-setbg="/Assets/Client/img/rooms/room-1.jpg"></div>
+                                <div class="single-img set-bg" data-setbg="/Assets/Client/img/rooms/room-2.jpg"></div>
+                                <div class="single-img set-bg" data-setbg="/Assets/Client/img/rooms/room-3.jpg"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="ri-text">
+                            <div class="section-title">
+                                <div class="section-title">
+                                    <span>From @item.Price $</span>
+                                    <h2>@item.RoomTypeName</h2>
+                                </div>
+                                <p>
+                                    @item.Description
+                                </p>
+                                <div class="ri-features">
+                                    <div class="ri-info">
+                                        <i class="flaticon-019-television"></i>
+                                        <p>Smart TV</p>
+                                    </div>
+                                    <div class="ri-info">
+                                        <i class="flaticon-029-wifi"></i>
+                                        <p>High Wi-fii</p>
+                                    </div>
+                                    <div class="ri-info">
+                                        <i class="flaticon-003-air-conditioner"></i>
+                                        <p>AC</p>
+                                    </div>
+                                    <div class="ri-info">
+                                        <i class="flaticon-036-parking"></i>
+                                        <p>Parking</p>
+                                    </div>                                   
+                                </div>
+                                <a href="#" class="primary-btn">Make a Reservation</a>
+                            </div>
+                        </div>
+                    </div>
+                    break;
+                case 2:
                     <div class="col-lg-6 order-lg-2">
                         <div class="ri-slider-item">
                             <div class="ri-sliders owl-carousel">
@@ -80,7 +124,7 @@
                                     <h2>@item.RoomTypeName</h2>
                                 </div>
                                 <p>
-                                @item.Description
+                                    @item.Description
                                 </p>
                                 <div class="ri-features">
                                     <div class="ri-info">
@@ -108,13 +152,12 @@
                             </div>
                         </div>
                     </div>
-                }
-                else
-                {
+                    break;
+                case 3:
                     <div class="col-lg-6">
                         <div class="ri-slider-item">
                             <div class="ri-sliders owl-carousel">
-                                <div class="single-img set-bg" data-setbg="/Assets/Client/img/rooms/room-1.jpg"></div>
+                                <div class="single-img set-bg" data-setbg="/Assets/Client/img/rooms/room-4.jpg"></div>
                                 <div class="single-img set-bg" data-setbg="/Assets/Client/img/rooms/room-2.jpg"></div>
                                 <div class="single-img set-bg" data-setbg="/Assets/Client/img/rooms/room-3.jpg"></div>
                             </div>
@@ -156,10 +199,10 @@
                             </div>
                         </div>
                     </div>
-
-
-                }
-            </div>
+                    break;
+                default: break;
+            }
+        </div>
         }
     </div>
 </section>
