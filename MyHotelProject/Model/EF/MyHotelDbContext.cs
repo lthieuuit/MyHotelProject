@@ -8,7 +8,7 @@ namespace Model.EF
     public partial class MyHotelDbContext : DbContext
     {
         public MyHotelDbContext()
-            : base("name=MyHotel")
+            : base("name=MyHotelDbContext")
         {
         }
 
@@ -19,7 +19,6 @@ namespace Model.EF
         public virtual DbSet<Guest> Guests { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
         public virtual DbSet<RoomType> RoomTypes { get; set; }
-        public virtual DbSet<RoomTypeStatu> RoomTypeStatus { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -48,17 +47,13 @@ namespace Model.EF
                 .Property(e => e.RoomTypeID)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<RoomType>()
-                .Property(e => e.RoomType1)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<RoomType>()
-                .Property(e => e.Price)
-                .IsFixedLength();
-
-            modelBuilder.Entity<RoomTypeStatu>()
+            modelBuilder.Entity<Room>()
                 .Property(e => e.Status)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Room>()
+                .Property(e => e.Price)
+                .HasPrecision(18, 0);
 
             modelBuilder.Entity<User>()
                 .Property(e => e.UserName)
