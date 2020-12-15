@@ -63,7 +63,6 @@
     <Compile Include="EF\MyHotelDbContext.cs" />
     <Compile Include="EF\Room.cs" />
     <Compile Include="EF\RoomType.cs" />
-    <Compile Include="EF\RoomTypeStatu.cs" />
     <Compile Include="EF\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
