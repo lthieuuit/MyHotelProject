@@ -101,6 +101,7 @@
         </div>
         <div id="layoutSidenav_content">
             <main>
+                <h1 class="mt-4">@RenderSection("header", required: true)</h1>
                 @RenderBody()
             </main>
             <footer class="py-4 bg-light mt-auto">

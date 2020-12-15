@@ -12,9 +12,11 @@ namespace MyHotelProject.Areas.Admin.Controllers
     public class UserController : Controller
     {
         // GET: Admin/User
-        public ActionResult Index()
+        public ActionResult Index(int page = 1, int pageSize = 10)
         {
-            return View();
+            var dao = new UserDao();
+            var model = dao.ListAllPaging(page, pageSize);
+            return View(model);
         }
         [HttpGet]
         public ActionResult Create()
