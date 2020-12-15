@@ -21,8 +21,8 @@ namespace MyHotelProject.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var dao = new UserDao();
-                var result = dao.Login(model.UserName, model.Password);
-                if (result)
+                var result = dao.Login(model.UserName, Encryptor.MD5Hash(model.Password));
+                if (result == 1)
                 {
                     var user = dao.GetById(model.UserName);
                     var userSession = new UserLogin();
@@ -31,9 +31,17 @@ namespace MyHotelProject.Areas.Admin.Controllers
                     Session.Add(CommonConstants.USER_SESSION, userSession);
                     return RedirectToAction("Index", "Home");
                 }
-                else
+                else if (result == 0)
                 {
-                    ModelState.AddModelError("", "Login Failed!");
+                    ModelState.AddModelError("", "Tài khoản không tồn tại.");
+                }
+                else if (result == -1)
+                {
+                    ModelState.AddModelError("", "Tài khoản đang bị khóa.");
+                }
+                else if (result == -2)
+                {
+                    ModelState.AddModelError("", "Mật khẩu không đúng.");
                 }
             }
             return View("Index");
