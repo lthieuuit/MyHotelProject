@@ -22,7 +22,7 @@ namespace Model.Dao
         }
         public IEnumerable<User> ListAllPaging(int page = 1, int pageSize = 10)
         {
-            return db.Users.OrderByDescending(x=>x.ID).ToPagedList(page,pageSize);
+            return db.Users.OrderByDescending(x => x.ID).ToPagedList(page, pageSize);
         }
 
         public bool Update(User entity)
@@ -31,7 +31,7 @@ namespace Model.Dao
             {
                 var user = db.Users.Find(entity.ID);
                 user.Name = entity.Name;
-                if(!string.IsNullOrEmpty(entity.Password))
+                if (!string.IsNullOrEmpty(entity.Password))
                 {
                     user.Password = entity.Password;
                 }
@@ -46,7 +46,7 @@ namespace Model.Dao
             }
 
         }
-        
+
         public User ViewDetail(int id)
         {
             return db.Users.Find(id);
@@ -78,6 +78,21 @@ namespace Model.Dao
                     else return -2;
                 }
             }
+        }
+        public bool Delete(int id)
+        {
+            try
+            {
+                var user = db.Users.Find(id);
+                db.Users.Remove(user);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
         }
     }
 }

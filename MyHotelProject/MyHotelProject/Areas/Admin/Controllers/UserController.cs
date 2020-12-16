@@ -68,5 +68,11 @@ namespace MyHotelProject.Areas.Admin.Controllers
             }
             return View("Index");
         }
+
+        public ActionResult Delete(int id)
+        {
+            new UserDao().Delete(id);
+            return RedirectToAction("Index");
+        }
     }
 }
