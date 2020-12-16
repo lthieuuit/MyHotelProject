@@ -24,6 +24,34 @@ namespace Model.Dao
         {
             return db.Users.OrderByDescending(x=>x.ID).ToPagedList(page,pageSize);
         }
+
+        public bool Update(User entity)
+        {
+            try
+            {
+                var user = db.Users.Find(entity.ID);
+                user.Name = entity.Name;
+                if(!string.IsNullOrEmpty(entity.Password))
+                {
+                    user.Password = entity.Password;
+                }
+                user.Email = entity.Email;
+                user.ModifiedDate = DateTime.Now;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
+        
+        public User ViewDetail(int id)
+        {
+            return db.Users.Find(id);
+        }
+
         public User GetById(string userName)
         {
             return db.Users.SingleOrDefault(x => x.UserName == userName);
