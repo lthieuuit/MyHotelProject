@@ -13,7 +13,7 @@ namespace Model.EF
 
         [Column("RoomType")]
         [StringLength(50)]
-        public string RoomType1 { get; set; }
+        public string RoomTypeName { get; set; }
 
         [StringLength(50)]
         public string Price { get; set; }
@@ -22,8 +22,12 @@ namespace Model.EF
         public string Description { get; set; }
 
         [StringLength(550)]
-        public string Image { get; set; }
+        public string Image1 { get; set; }
 
-        public int? Quantity { get; set; }
+        [StringLength(550)]
+        public string Image2 { get; set; }
+
+        [StringLength(550)]
+        public string Image3 { get; set; }
     }
 }
