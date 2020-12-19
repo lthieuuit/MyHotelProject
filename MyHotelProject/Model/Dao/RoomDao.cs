@@ -14,29 +14,27 @@ namespace Model.Dao
         {
             db = new MyHotelDbContext();
         }
-        public long Insert(RoomType entity)
+        public long Insert(Room entity)
         {
-            db.RoomTypes.Add(entity);
+            db.Rooms.Add(entity);
             db.SaveChanges();
-            return entity.ID;
+            return entity.RoomNumber;
         }
-        public IEnumerable<RoomType> ListAllPaging(int page = 1, int pageSize = 10)
+        public IEnumerable<Room> ListAllPaging(int page = 1, int pageSize = 10)
         {
-            return db.RoomTypes.OrderByDescending(x => x.ID).ToPagedList(page, pageSize);
+            return db.Rooms.OrderByDescending(x => x.RoomNumber).ToPagedList(page, pageSize);
         }
 
-        public bool Update(RoomType entity)
+        public bool Update(Room entity)
         {
             try
             {
-                var roomtype = db.RoomTypes.Find(entity.ID);
-                roomtype.RoomTypeName = entity.RoomTypeName;
-                
-                roomtype.Price = entity.Price;
-                roomtype.Description = entity.Description;
-                roomtype.Image1 = entity.Image1;
-                roomtype.Image2 = entity.Image2;
-                roomtype.Image3 = entity.Image3;
+                var room = db.Rooms.Find(entity.RoomNumber);
+                room.RoomNumber = entity.RoomNumber;
+                room.Price = entity.Price;
+                room.RoomTypeID = entity.RoomTypeID;
+                room.RoomCapacity = entity.RoomCapacity;
+                room.Status = entity.Status;
 
                 db.SaveChanges();
                 return true;
@@ -48,22 +46,22 @@ namespace Model.Dao
 
         }
 
-        public RoomType ViewDetail(int id)
+        public Room ViewDetail(int id)
         {
-            return db.RoomTypes.Find(id);
+            return db.Rooms.Find(id);
         }
 
-        public RoomType GetById(long id)
+        public Room GetById(long roomnumber)
         {
-            return db.RoomTypes.SingleOrDefault(x => x.ID == id);
+            return db.Rooms.SingleOrDefault(x => x.RoomNumber == roomnumber);
         }
 
         public bool Delete(int id)
         {
             try
             {
-                var roomtype = db.RoomTypes.Find(id);
-                db.RoomTypes.Remove(roomtype);
+                var room = db.Rooms.Find(id);
+                db.Rooms.Remove(room);
                 db.SaveChanges();
                 return true;
             }

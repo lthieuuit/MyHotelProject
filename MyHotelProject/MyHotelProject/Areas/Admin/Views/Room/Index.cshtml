@@ -1,0 +1,57 @@
+﻿@model PagedList.IPagedList<Model.EF.Room>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section header{Danh sách phòng}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card shadow mb-4">
+
+            <div class="card-body">
+
+                <a href="/Admin/RoomType/Create">Thêm</a>
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Thao tác</th>
+                                <th>Số phòng</th>
+                                <th>Loại phòng</th>
+                                <th>Số người</th>
+                                <th>Trạng thái</th>
+                                <th>Mức giá</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr id="row_@item.RoomNumber">
+                                    <td>
+                                        <a href="/Admin/Room/Edit/@item.RoomNumber">Sửa</a>
+                                        <a> | </a>
+                                        @Ajax.ActionLink("Xóa", "Delete", new { @id = item.RoomNumber }, new AjaxOptions
+                                        {
+                                       Confirm = "Bạn có muốn xóa loại phòng này?",
+                                       OnComplete = "$('#row_" + item.RoomNumber + "').remove()",
+                                       HttpMethod = "Delete"
+                                   })
+                                    </td>
+                                    <td>@item.RoomNumber</td>
+                                    <td>@item.RoomTypeID</td>
+                                    <td>@item.RoomCapacity</td>
+                                    <td>@item.Status</td>
+                                    <td>@item.Price</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

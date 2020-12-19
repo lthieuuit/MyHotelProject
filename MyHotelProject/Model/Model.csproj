@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Dao\RoomDao.cs" />
+    <Compile Include="Dao\RoomTypeDao.cs" />
     <Compile Include="Dao\UserDao.cs" />
     <Compile Include="EF\Bill.cs" />
     <Compile Include="EF\BillDetail.cs" />

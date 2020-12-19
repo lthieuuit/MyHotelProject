@@ -53,7 +53,7 @@ namespace Model.EF
 
             modelBuilder.Entity<Room>()
                 .Property(e => e.Price)
-                .HasPrecision(18, 0);
+                .IsUnicode(false);
 
             modelBuilder.Entity<User>()
                 .Property(e => e.UserName)
