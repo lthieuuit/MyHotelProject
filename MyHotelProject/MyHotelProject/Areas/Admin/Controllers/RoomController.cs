@@ -34,9 +34,10 @@ namespace MyHotelProject.Areas.Admin.Controllers
 
                 if (id > 0)
                 {
-                    return RedirectToAction("Index", "RoomType");
+                    return RedirectToAction("Index", "Room");
+                    ModelState.AddModelError("", "Thêm phòng thành công");
                 }
-                else ModelState.AddModelError("", "Thêm phòng thành công");
+                else ModelState.AddModelError("", "Thêm phòng không thành công");
             }
             return View("Index");
         }

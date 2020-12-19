@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-@section header{Thêm mới Loại phòng}
+@section header{Thêm mới phòng}
 @using (Html.BeginForm("Create", "Room", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
