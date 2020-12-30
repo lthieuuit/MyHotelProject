@@ -9,9 +9,8 @@ namespace Model.EF
     [Table("RoomType")]
     public partial class RoomType
     {
-        public long ID { get; set; }
+        public int ID { get; set; }
 
-        [Column("RoomType")]
         [StringLength(50)]
         public string RoomTypeName { get; set; }
 

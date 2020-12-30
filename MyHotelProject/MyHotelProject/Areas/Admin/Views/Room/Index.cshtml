@@ -37,7 +37,10 @@
                                        Confirm = "Bạn có muốn xóa loại phòng này?",
                                        OnComplete = "$('#row_" + item.RoomNumber + "').remove()",
                                        HttpMethod = "Delete"
+
                                    })
+                                        <a> | </a>
+                                        <a href="/Admin/Room/Print/@item.RoomNumber">In</a>
                                     </td>
                                     <td>@item.RoomNumber</td>
                                     <td>@item.RoomTypeID</td>
