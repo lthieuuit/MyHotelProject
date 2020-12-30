@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Model.EF;
 using PagedList;
+
 namespace Model.Dao
 {
     public class RoomTypeDao
@@ -74,4 +75,13 @@ namespace Model.Dao
 
         }
     }
+        { 
+            db = new MyHotelDbContext();
+        }
+        public List<RoomType> ListAll()
+        {
+            return db.RoomTypes.Where(x => x.ID != 0).ToList();
+        }
+    }
+
 }
