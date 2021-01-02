@@ -86,6 +86,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Dao\BillDao.cs" />
     <Compile Include="Dao\BillDetailDao.cs" />
+    <Compile Include="Dao\BookingDao.cs" />
     <Compile Include="Dao\RoomDao.cs" />
     <Compile Include="Dao\RoomTypeDao.cs" />
     <Compile Include="Dao\UserDao.cs" />

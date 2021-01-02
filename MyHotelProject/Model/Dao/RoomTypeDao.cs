@@ -74,14 +74,9 @@ namespace Model.Dao
             }
 
         }
-    }
-        { 
-            db = new MyHotelDbContext();
-        }
         public List<RoomType> ListAll()
         {
-            return db.RoomTypes.Where(x => x.ID != 0).ToList();
+            return db.RoomTypes.ToList();
         }
     }
-
 }
