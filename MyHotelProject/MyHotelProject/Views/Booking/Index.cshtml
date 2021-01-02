@@ -1,0 +1,210 @@
+﻿@model List<MyHotelProject.Models.BookingRoom>
+@{
+    ViewBag.Title = "Index Booking";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var roomtypes = (List<Model.EF.RoomType>)ViewBag.RoomTypes;
+    var room = (List<Model.EF.RoomTypeBook>)ViewBag.RoomBooks;
+}
+@section jsFooter{
+    <script src="/Assets/Client/js/bookingController.js"></script>
+}
+@section homewallpaper{
+    <div class="hero-area set-bg other-page" data-setbg="/Assets/Client/img/about_bg.jpg">
+    </div>
+}
+@{
+    decimal sumPrice = 0;
+    decimal Sum = 0;
+}
+
+@section searchfilter{
+    <section class="search-filter other-page-filter">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form class="check-form" action="/Booking/Reservation" method="post">
+                        <h4>Check Availability</h4>
+                        <div class="datepicker">
+                            <p>ID</p>
+                            <input type="text" name="roomtypebookID" id="roomtypebookID">
+                            
+                        </div>
+                        <div class="datepicker">
+                            <p>From</p>
+                            <input type="text" name="checkin" id="fromdate" class="datepicker-1" value="mm / dd / yyyy">
+                            <img src="/Assets/Client/img/calendar.png" alt="">
+                        </div>
+                        <div class="datepicker">
+                            <p>To</p>
+                            <input type="text" name="checkout" id="todate" class="datepicker-2" value="mm / dd / yyyy">
+                            <img src="/Assets/Client/img/calendar.png" alt="">
+                        </div>
+                        <div class="room-quantity">
+                            <div class="single-quantity">
+                                <p>Adults</p>
+                                <div class="pro-qty"  id="adult"><input name="adult" class="adult-qty" type="text" value="2"></div>
+                            </div>
+                            <div class="single-quantity">
+                                <p>Children</p>
+                                <div class="pro-qty"  id="children"><input name="children" class="child-qty" type="text" value="0"></div>
+                            </div>
+                            <div class="single-quantity last" id=" room_quantity">
+                                <p>Rooms</p>
+                                <div class="pro-qty"  id="room_quantity"><input name="quantity" class="room-qty" type="text" value="1"></div>
+                            </div>
+                        </div>
+                        <div class="room-selector">
+                            <p>Room Type</p>
+                            <select class="suit-select">
+
+                                @foreach (var item in room)
+                                {
+                                    <option name="roomtypebookID" value="">@item.ID @item.RoomTypeNameBook  (@item.Price VNĐ)</option>
+                                }
+                            </select>
+                        </div>
+                        <button type="submit">Go</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+<section class="room-section">
+    <div class="container-fluid">
+        @foreach (var item in roomtypes)
+        {
+            long i = item.ID % 2;
+            <div class="row">
+                @if (i == 0)
+                {
+                    <div class="col-lg-6 order-lg-2">
+                        <div class="ri-slider-item">
+                            <div class="ri-sliders owl-carousel">
+                                <div class="single-img set-bg" data-setbg="@item.Image1"></div>
+                                <div class="single-img set-bg" data-setbg="@item.Image2"></div>
+                                <div class="single-img set-bg" data-setbg="@item.Image3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 order-lg-1">
+                        <div class="ri-text">
+                            <div class="section-title">
+                                <div class="section-title">
+                                    <span>From @item.PriceShow VNĐ</span>
+                                    <h2> @item.RoomTypeName</h2>
+                                </div>
+                                <p>
+                                    @item.Description
+                                </p>
+                                <div class="ri-features">
+                                    <div class="ri-info">
+                                        <i class="flaticon-019-television"></i>
+                                        <p>Smart TV</p>
+                                    </div>
+                                    <div class="ri-info">
+                                        <i class="flaticon-029-wifi"></i>
+                                        <p>High Wi-fii</p>
+                                    </div>
+                                    <div class="ri-info">
+                                        <i class="flaticon-003-air-conditioner"></i>
+                                        <p>AC</p>
+                                    </div>
+                                    <div class="ri-info">
+                                        <i class="flaticon-036-parking"></i>
+                                        <p>Parking</p>
+                                    </div>
+                                    <div class="ri-info">
+                                        <i class="flaticon-007-swimming-pool"></i>
+                                        <p>Pool</p>
+                                    </div>
+                                </div>
+                                @*<a href="/them-don-dat-phong?roomtypeId=@item.ID&roomtypeName=@item.RoomTypeName" class="primary-btn">Make a Reservation</a>*@
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-lg-6">
+                        <div class="ri-slider-item">
+                            <div class="ri-sliders owl-carousel">
+                                <div class="single-img set-bg" data-setbg="@item.Image1"></div>
+                                <div class="single-img set-bg" data-setbg="@item.Image2"></div>
+                                <div class="single-img set-bg" data-setbg="@item.Image3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="ri-text">
+                            <div class="section-title">
+                                <div class="section-title">
+                                    <span>From @item.PriceShow VNĐ</span>
+                                    <h2> @item.RoomTypeName</h2>
+                                </div>
+                                <p>
+                                    @item.Description
+                                </p>
+                                <div class="ri-features">
+                                    <div class="ri-info">
+                                        <i class="flaticon-019-television"></i>
+                                        <p>Smart TV</p>
+                                    </div>
+                                    <div class="ri-info">
+                                        <i class="flaticon-029-wifi"></i>
+                                        <p>High Wi-fii</p>
+                                    </div>
+                                    <div class="ri-info">
+                                        <i class="flaticon-003-air-conditioner"></i>
+                                        <p>AC</p>
+                                    </div>
+                                    <div class="ri-info">
+                                        <i class="flaticon-036-parking"></i>
+                                        <p>Parking</p>
+                                    </div>
+                                    <div class="ri-info">
+                                        <i class="flaticon-007-swimming-pool"></i>
+                                        <p>Pool</p>
+                                    </div>
+                                </div>
+                                @*<a href="/them-don-dat-phong?roomtypeId=@item.ID&roomtypeName=@item.RoomTypeName" class="primary-btn">Make a Reservation</a>*@
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</section>
+
+
+@*<script>
+        $(document).ready(function () {
+
+            $(".confirm-booking").click(function () {
+                debugger;
+                var name = $("#name-id").val();
+                var email = $("#email-id").val();
+                var phone = $("#phone-id").val();
+                var idcardnumber = $("#cardnumber-id").val();
+                var address = $("#address-id").val();
+                var message = $("#message-id").val();
+                if (name != null && name != "" && email != null && email != "" && phone != null && phone != "" && idcardnumber != null && idcardnumber != "" && address != null && address != "" && message != null && message != "") {
+                    $.ajax({
+                        url: "http://localhost:49886/Booking/Reservation",
+                        data: { '@Model.BookName' : name, '@Model.BookEmail' : email, '@Model.BookPhone': phone,'@Model.IdCardNumber' : idcardnumber,'@Model.BookAddress' : address, '@Model.Message': message  },
+                        dataType: "Json",
+                        type: "Post",
+                        success: function (response) {
+                            if (response != null) {
+                                debugger;
+                                location.reload();
+                                alert("Tao thanh cong !");
+                            }
+                        },
+                    });
+                }
+
+            })
+        })
+    </script>*@

@@ -13,14 +13,6 @@ namespace Model.EF
 
         public DateTime? CreatedDate { get; set; }
 
-        public long GuestID { get; set; }
-
-        public DateTime? ToDate { get; set; }
-
-        public DateTime? FromDate { get; set; }
-
-        public long RoomNumber { get; set; }
-
         [StringLength(50)]
         public string BookName { get; set; }
 
@@ -34,6 +26,9 @@ namespace Model.EF
 
         [StringLength(50)]
         public string BookPhone { get; set; }
+
+        [StringLength(550)]
+        public string Message { get; set; }
 
         public int? Status { get; set; }
     }

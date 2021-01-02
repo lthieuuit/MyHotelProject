@@ -9,12 +9,13 @@ namespace Model.EF
     [Table("RoomType")]
     public partial class RoomType
     {
-        public int ID { get; set; }
+        public long ID { get; set; }
+
         [StringLength(50)]
         public string RoomTypeName { get; set; }
 
         [StringLength(50)]
-        public string Price { get; set; }
+        public string PriceShow { get; set; }
 
         [StringLength(550)]
         public string Description { get; set; }
@@ -27,5 +28,7 @@ namespace Model.EF
 
         [StringLength(550)]
         public string Image3 { get; set; }
+
+        public int? Quantity { get; set; }
     }
 }

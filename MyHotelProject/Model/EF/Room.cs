@@ -13,8 +13,7 @@ namespace Model.EF
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int RoomNumber { get; set; }
 
-        [StringLength(50)]
-        public string RoomTypeID { get; set; }
+        public long? RoomTypeID { get; set; }
 
         public int? RoomCapacity { get; set; }
 

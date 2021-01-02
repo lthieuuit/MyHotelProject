@@ -16,6 +16,7 @@ namespace MyHotelProject.Controllers
             ViewBag.RoomTypes = roomTypeDao.ListAll();
             var name = this.Request.Form["adult_qty"];
             System.Console.WriteLine(name);
+            ViewBag.RoomTypes = roomTypeDao.ListAllRoomType();   
             return View();
         }
         [HttpGet]

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.Dao;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,16 @@ namespace MyHotelProject.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            var roomTypeDao = new RoomTypeDao();
+            ViewBag.RoomTypes = roomTypeDao.ListAllRoomType();
             return View();
+        }
+
+        [ChildActionOnly]
+        public ActionResult MainMenu()
+        {
+            var model = new MenuDao().ListByGroupId(1);
+            return PartialView(model);
         }
     }
 }

@@ -1,25 +1,24 @@
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model.EF;
-using PagedList;
+
 namespace Model.Dao
 {
-    public class BookingDao
+    public class MenuDao
     {
         MyHotelDbContext db = null;
-        public BookingDao()
+        public MenuDao()
         {
             db = new MyHotelDbContext();
         }
-         public long Insert(Booking booking)
+
+        public List<Menu> ListByGroupId(int groupid)
         {
-            db.Bookings.Add(booking);
-            db.SaveChanges();
-            return booking.ID;
+            return db.Menus.Where(x => x.TypeID == groupid).ToList();
         }
     }
 }
+

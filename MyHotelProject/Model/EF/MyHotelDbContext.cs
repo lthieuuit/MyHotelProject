@@ -19,7 +19,9 @@ namespace Model.EF
         public virtual DbSet<Guest> Guests { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
         public virtual DbSet<RoomType> RoomTypes { get; set; }
+        public virtual DbSet<RoomTypeBook> RoomTypeBooks { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Menu> Menus { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -32,19 +34,11 @@ namespace Model.EF
                 .HasPrecision(18, 0);
 
             modelBuilder.Entity<BookingDetail>()
-                .Property(e => e.TotalPayment)
+                .Property(e => e.Price)
                 .HasPrecision(18, 0);
 
             modelBuilder.Entity<BookingDetail>()
                 .Property(e => e.Link)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Guest>()
-                .Property(e => e.RoomID)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Room>()
-                .Property(e => e.RoomTypeID)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Room>()
@@ -54,6 +48,10 @@ namespace Model.EF
             modelBuilder.Entity<Room>()
                 .Property(e => e.Price)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<RoomTypeBook>()
+                .Property(e => e.Price)
+                .HasPrecision(18, 0);
 
             modelBuilder.Entity<User>()
                 .Property(e => e.UserName)
