@@ -14,12 +14,27 @@ namespace Model.EF
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long BookingID { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int RoomNumber { get; set; }
+        //[Key]
+        //[Column(Order = 1)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int RoomTypeID { get; set; }
 
-        public decimal? TotalPayment { get; set; }
+        public DateTime? ToDate { get; set; }
+
+        public DateTime? FromDate { get; set; }
+
+        public int? Adult { get; set; }
+
+        public int? Children { get; set; }
+
+        public int? Quantity { get; set; }
+
+        public DateTime? CreatedDate { get; set; }
+
+        [StringLength(50)]
+        public string RoomTypeName { get; set; }
+
+        public decimal? Price { get; set; }
 
         [StringLength(50)]
         public string Link { get; set; }

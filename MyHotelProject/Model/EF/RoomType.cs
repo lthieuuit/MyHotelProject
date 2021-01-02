@@ -11,20 +11,24 @@ namespace Model.EF
     {
         public long ID { get; set; }
 
-        [Column("RoomType")]
         [StringLength(50)]
         public string RoomTypeName { get; set; }
 
         [StringLength(50)]
-        public string Price { get; set; }
+        public string PriceShow { get; set; }
 
         [StringLength(550)]
         public string Description { get; set; }
 
         [StringLength(550)]
-        public string Image { get; set; }
+        public string Image1 { get; set; }
+
+        [StringLength(550)]
+        public string Image2 { get; set; }
+
+        [StringLength(550)]
+        public string Image3 { get; set; }
 
         public int? Quantity { get; set; }
-
     }
 }

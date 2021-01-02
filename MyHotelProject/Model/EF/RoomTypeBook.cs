@@ -6,19 +6,17 @@ namespace Model.EF
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Room")]
-    public partial class Room
+    [Table("RoomTypeBook")]
+    public partial class RoomTypeBook
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int RoomNumber { get; set; }
+        public long ID { get; set; }
 
-        public long? RoomTypeID { get; set; }
-
-        public int? RoomCapacity { get; set; }
+        public long RoomTypeID { get; set; }
 
         [StringLength(50)]
-        public string Status { get; set; }
+        public string RoomTypeNameBook { get; set; }
+
+        public int? Quantity { get; set; }
 
         public decimal? Price { get; set; }
     }

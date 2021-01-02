@@ -54,6 +54,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Dao\BookingDao.cs" />
+    <Compile Include="Dao\BookingDetailDao.cs" />
+    <Compile Include="Dao\GuestDAO.cs" />
+    <Compile Include="Dao\MenuDao.cs" />
     <Compile Include="Dao\RoomTypeDao.cs" />
     <Compile Include="Dao\UserDao.cs" />
     <Compile Include="EF\Bill.cs" />
@@ -61,11 +65,14 @@
     <Compile Include="EF\Booking.cs" />
     <Compile Include="EF\BookingDetail.cs" />
     <Compile Include="EF\Guest.cs" />
+    <Compile Include="EF\Menu.cs" />
     <Compile Include="EF\MyHotelDbContext.cs" />
     <Compile Include="EF\Room.cs" />
     <Compile Include="EF\RoomType.cs" />
+    <Compile Include="EF\RoomTypeBook.cs" />
     <Compile Include="EF\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\RoomViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

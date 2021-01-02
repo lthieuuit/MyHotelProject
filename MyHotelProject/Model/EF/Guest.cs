@@ -26,8 +26,7 @@ namespace Model.EF
         [StringLength(50)]
         public string Phone { get; set; }
 
-        [StringLength(10)]
-        public string RoomID { get; set; }
+        public long? RoomID { get; set; }
 
         public DateTime? FromDate { get; set; }
 

@@ -1,52 +1,55 @@
-﻿
-
+﻿@*@model List<MyHotelProject.Models.BookingRoom>*@
 @{
     ViewBag.Title = "Our Rooms";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var room = (List<Model.EF.RoomType>)ViewBag.RoomTypes;
+    var roomtypes = (List<Model.EF.RoomType>)ViewBag.RoomTypes;
+}
+@section jsFooter{
+    <script src="/Assets/client/js/bookingController.js"></script>
 }
 @section homewallpaper{
     <div class="hero-area set-bg other-page" data-setbg="/Assets/Client/img/about_bg.jpg">
     </div>
 }
+
 @section searchfilter{
     <section class="search-filter other-page-filter">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <form action="#" class="check-form">
+                    <form class="check-form">
                         <h4>Check Availability</h4>
                         <div class="datepicker">
                             <p>From</p>
-                            <input type="text" class="datepicker-1" value="dd / mm / yyyy">
+                            <input type="text" name="CheckinDate" id="fromdate" class="datepicker-1" value="dd / mm / yyyy">
                             <img src="/Assets/Client/img/calendar.png" alt="">
                         </div>
                         <div class="datepicker">
                             <p>To</p>
-                            <input type="text" class="datepicker-2" value="dd / mm / yyyy">
+                            <input type="text" name="CheckoutDate" id="todate" class="datepicker-2" value="dd / mm / yyyy">
                             <img src="/Assets/Client/img/calendar.png" alt="">
                         </div>
                         <div class="room-quantity">
                             <div class="single-quantity">
                                 <p>Adults</p>
-                                <div class="pro-qty"><input type="text" value="0"></div>
+                                <div class="pro-qty" id="adult"><input class="adult-qty" type="text" value="2"></div>
                             </div>
                             <div class="single-quantity">
                                 <p>Children</p>
-                                <div class="pro-qty"><input type="text" value="0"></div>
+                                <div class="pro-qty" id="children"><input class="child-qty" type="text" value="0"></div>
                             </div>
-                            <div class="single-quantity last">
+                            <div class="single-quantity last" id=" room_quantity">
                                 <p>Rooms</p>
-                                <div class="pro-qty"><input type="text" value="0"></div>
+                                <div class="pro-qty" id="room_quantity"><input class="room-qty" type="text" value="1"></div>
                             </div>
                         </div>
                         <div class="room-selector">
                             <p>Room</p>
                             <select class="suit-select">
-                                <option>Eg. Master suite</option>
-                                <option value="">Double Room</option>
-                                <option value="">Single Room</option>
-                                <option value="">Special Room</option>
+                                @foreach (var room in roomtypes)
+                                {
+                                    <option value="">@room.RoomTypeName</option>
+                                }
                             </select>
                         </div>
                         <button type="submit">Go</button>
@@ -56,153 +59,111 @@
         </div>
     </section>
 }
+
 <section class="room-section">
     <div class="container-fluid">
-        @foreach (var item in room)
+        @foreach (var item in roomtypes)
         {
+            long i = item.ID % 2;
         <div class="row">
-            @switch (item.ID)
+            @if (i == 0)
             {
-                case 1:
-                    <div class="col-lg-6">
-                        <div class="ri-slider-item">
-                            <div class="ri-sliders owl-carousel">
-                                <div class="single-img set-bg" data-setbg="/Assets/Client/img/rooms/room-1.jpg"></div>
-                                <div class="single-img set-bg" data-setbg="/Assets/Client/img/rooms/room-2.jpg"></div>
-                                <div class="single-img set-bg" data-setbg="/Assets/Client/img/rooms/room-3.jpg"></div>
-                            </div>
+                <div class="col-lg-6 order-lg-2">
+                    <div class="ri-slider-item">
+                        <div class="ri-sliders owl-carousel">
+                            <div class="single-img set-bg" data-setbg="@item.Image1"></div>
+                            <div class="single-img set-bg" data-setbg="@item.Image2"></div>
+                            <div class="single-img set-bg" data-setbg="@item.Image3"></div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="ri-text">
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div class="ri-text">
+                        <div class="section-title">
                             <div class="section-title">
-                                <div class="section-title">
-                                    <span>From @item.Price $</span>
-                                    <h2>@item.RoomTypeName</h2>
-                                </div>
-                                <p>
-                                    @item.Description
-                                </p>
-                                <div class="ri-features">
-                                    <div class="ri-info">
-                                        <i class="flaticon-019-television"></i>
-                                        <p>Smart TV</p>
-                                    </div>
-                                    <div class="ri-info">
-                                        <i class="flaticon-029-wifi"></i>
-                                        <p>High Wi-fii</p>
-                                    </div>
-                                    <div class="ri-info">
-                                        <i class="flaticon-003-air-conditioner"></i>
-                                        <p>AC</p>
-                                    </div>
-                                    <div class="ri-info">
-                                        <i class="flaticon-036-parking"></i>
-                                        <p>Parking</p>
-                                    </div>                                   
-                                </div>
-                                <a href="#" class="primary-btn">Make a Reservation</a>
+                                <span>From @item.PriceShow $</span>
+                                <h2> @item.RoomTypeName</h2>
                             </div>
+                            <p>
+                                @item.Description
+                            </p>
+                            <div class="ri-features">
+                                <div class="ri-info">
+                                    <i class="flaticon-019-television"></i>
+                                    <p>Smart TV</p>
+                                </div>
+                                <div class="ri-info">
+                                    <i class="flaticon-029-wifi"></i>
+                                    <p>High Wi-fii</p>
+                                </div>
+                                <div class="ri-info">
+                                    <i class="flaticon-003-air-conditioner"></i>
+                                    <p>AC</p>
+                                </div>
+                                <div class="ri-info">
+                                    <i class="flaticon-036-parking"></i>
+                                    <p>Parking</p>
+                                </div>
+                                <div class="ri-info">
+                                    <i class="flaticon-007-swimming-pool"></i>
+                                    <p>Pool</p>
+                                </div>
+                            </div>
+                            <a href="/them-don-dat-phong?roomtypeID=@item.ID" class="primary-btn">Make a Reservation</a>
                         </div>
                     </div>
-                    break;
-                case 2:
-                    <div class="col-lg-6 order-lg-2">
-                        <div class="ri-slider-item">
-                            <div class="ri-sliders owl-carousel">
-                                <div class="single-img set-bg" data-setbg="/Assets/Client/img/rooms/room-2.jpg"></div>
-                                <div class="single-img set-bg" data-setbg="/Assets/Client/img/rooms/room-3.jpg"></div>
-                                <div class="single-img set-bg" data-setbg="/Assets/Client/img/rooms/room-4.jpg"></div>
-                            </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-lg-6">
+                    <div class="ri-slider-item">
+                        <div class="ri-sliders owl-carousel">
+                            <div class="single-img set-bg" data-setbg="@item.Image1"></div>
+                            <div class="single-img set-bg" data-setbg="@item.Image2"></div>
+                            <div class="single-img set-bg" data-setbg="@item.Image3"></div>
                         </div>
                     </div>
-                    <div class="col-lg-6 order-lg-1">
-                        <div class="ri-text left-side">
+                </div>  
+                <div class="col-lg-6">
+                    <div class="ri-text">
+                        <div class="section-title">
                             <div class="section-title">
-                                <div class="section-title">
-                                    <span>From @item.Price $</span>
-                                    <h2>@item.RoomTypeName</h2>
-                                </div>
-                                <p>
-                                    @item.Description
-                                </p>
-                                <div class="ri-features">
-                                    <div class="ri-info">
-                                        <i class="flaticon-019-television"></i>
-                                        <p>Smart TV</p>
-                                    </div>
-                                    <div class="ri-info">
-                                        <i class="flaticon-029-wifi"></i>
-                                        <p>High Wi-fii</p>
-                                    </div>
-                                    <div class="ri-info">
-                                        <i class="flaticon-003-air-conditioner"></i>
-                                        <p>AC</p>
-                                    </div>
-                                    <div class="ri-info">
-                                        <i class="flaticon-036-parking"></i>
-                                        <p>Parking</p>
-                                    </div>
-                                    <div class="ri-info">
-                                        <i class="flaticon-007-swimming-pool"></i>
-                                        <p>Pool</p>
-                                    </div>
-                                </div>
-                                <a href="#" class="primary-btn">Make a Reservation</a>
+                                <span>From @item.PriceShow $</span>
+                                <h2> @item.RoomTypeName</h2>
                             </div>
+                            <p>
+                                @item.Description
+                            </p>
+                            <div class="ri-features">
+                                <div class="ri-info">
+                                    <i class="flaticon-019-television"></i>
+                                    <p>Smart TV</p>
+                                </div>
+                                <div class="ri-info">
+                                    <i class="flaticon-029-wifi"></i>
+                                    <p>High Wi-fii</p>
+                                </div>
+                                <div class="ri-info">
+                                    <i class="flaticon-003-air-conditioner"></i>
+                                    <p>AC</p>
+                                </div>
+                                <div class="ri-info">
+                                    <i class="flaticon-036-parking"></i>
+                                    <p>Parking</p>
+                                </div>
+                                <div class="ri-info">
+                                    <i class="flaticon-007-swimming-pool"></i>
+                                    <p>Pool</p>
+                                </div>
+                            </div>
+                            <a href="/them-don-dat-phong?roomtypeID=@item.ID&roomtypeName=@item.RoomTypeName" class="primary-btn">Make a Reservation</a>
                         </div>
                     </div>
-                    break;
-                case 3:
-                    <div class="col-lg-6">
-                        <div class="ri-slider-item">
-                            <div class="ri-sliders owl-carousel">
-                                <div class="single-img set-bg" data-setbg="/Assets/Client/img/rooms/room-4.jpg"></div>
-                                <div class="single-img set-bg" data-setbg="/Assets/Client/img/rooms/room-2.jpg"></div>
-                                <div class="single-img set-bg" data-setbg="/Assets/Client/img/rooms/room-3.jpg"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="ri-text">
-                            <div class="section-title">
-                                <div class="section-title">
-                                    <span>From @item.Price $</span>
-                                    <h2>@item.RoomTypeName</h2>
-                                </div>
-                                <p>
-                                    @item.Description
-                                </p>
-                                <div class="ri-features">
-                                    <div class="ri-info">
-                                        <i class="flaticon-019-television"></i>
-                                        <p>Smart TV</p>
-                                    </div>
-                                    <div class="ri-info">
-                                        <i class="flaticon-029-wifi"></i>
-                                        <p>High Wi-fii</p>
-                                    </div>
-                                    <div class="ri-info">
-                                        <i class="flaticon-003-air-conditioner"></i>
-                                        <p>AC</p>
-                                    </div>
-                                    <div class="ri-info">
-                                        <i class="flaticon-036-parking"></i>
-                                        <p>Parking</p>
-                                    </div>
-                                    <div class="ri-info">
-                                        <i class="flaticon-007-swimming-pool"></i>
-                                        <p>Pool</p>
-                                    </div>
-                                </div>
-                                <a href="#" class="primary-btn">Make a Reservation</a>
-                            </div>
-                        </div>
-                    </div>
-                    break;
-                default: break;
+                </div>
             }
         </div>
         }
     </div>
 </section>
+
