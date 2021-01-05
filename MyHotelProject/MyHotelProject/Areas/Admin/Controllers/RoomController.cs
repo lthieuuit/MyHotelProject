@@ -6,10 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Syncfusion.Pdf;
-using Syncfusion.Pdf.Parsing;
-using Syncfusion.Pdf.Graphics;
-using Syncfusion.Pdf.Grid;
 using System.Diagnostics;
 using System.Drawing;
 
@@ -27,20 +23,20 @@ namespace MyHotelProject.Areas.Admin.Controllers
 
         public void Print(int id)
         {
-            var room = new RoomDao().ViewDetail(id);
-            PdfDocument document = new PdfDocument();
-            //Add a page to the document.
-            PdfPage page = document.Pages.Add();
-            //Create PDF graphics for the page.
-            PdfGraphics graphics = page.Graphics;
-            //Set the standard font.
-            PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 20);
-            //Draw the text.
-            graphics.DrawString(room.RoomCapacity.ToString(), font, PdfBrushes.Black, new PointF(0, 0));
-            //Save the document.    
-            document.Save("./Assets/Admin/Bills/Output.pdf");
-            //Close the document.
-            document.Close(true);
+            //var room = new RoomDao().ViewDetail(id);
+            //PdfDocument document = new PdfDocument();
+            ////Add a page to the document.
+            //PdfPage page = document.Pages.Add();
+            ////Create PDF graphics for the page.
+            //PdfGraphics graphics = page.Graphics;
+            ////Set the standard font.
+            //PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 20);
+            ////Draw the text.
+            //graphics.DrawString(room.RoomCapacity.ToString(), font, PdfBrushes.Black, new PointF(0, 0));
+            ////Save the document.    
+            //document.Save("./Assets/Admin/Bills/Output.pdf");
+            ////Close the document.
+            //document.Close(true);
 
         }
 

@@ -84,10 +84,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Dao\BillDao.cs" />
     <Compile Include="Dao\BookingDao.cs" />
     <Compile Include="Dao\BookingDetailDao.cs" />
     <Compile Include="Dao\GuestDAO.cs" />
     <Compile Include="Dao\MenuDao.cs" />
+    <Compile Include="Dao\RoomDao.cs" />
     <Compile Include="Dao\RoomTypeDao.cs" />
     <Compile Include="Dao\UserDao.cs" />
     <Compile Include="EF\Bill.cs" />

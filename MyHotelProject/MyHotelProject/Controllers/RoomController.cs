@@ -13,7 +13,7 @@ namespace MyHotelProject.Controllers
         public ActionResult Index()
         {
             var roomTypeDao = new RoomTypeDao();
-            ViewBag.RoomTypes = roomTypeDao.ListAll();
+            ViewBag.RoomTypes = roomTypeDao.ListAllRoomType();
             var name = this.Request.Form["adult_qty"];
             System.Console.WriteLine(name);
             ViewBag.RoomTypes = roomTypeDao.ListAllRoomType();   

@@ -149,6 +149,8 @@ namespace MyHotelProject.Controllers
                     bookingDetail.RoomTypeName = item.RoomTypeBook.RoomTypeNameBook;
                     //bookingDetail.RoomNumber = item.Room.RoomNumber;
                     bookingDetail.BookingID = id;
+                    bookingDetail.CreatedDate = DateTime.Now; 
+                    bookingDetail.RoomTypeID = item.RoomTypeBook.RoomTypeID;
                     bookingDetail.Quantity = item.Quantity;
                     bookingDetail.FromDate = item.CheckinDate;
                     bookingDetail.ToDate = item.CheckoutDate;

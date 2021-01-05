@@ -17,7 +17,7 @@ namespace Model.EF
         //[Key]
         //[Column(Order = 1)]
         //[DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int RoomTypeID { get; set; }
+        public long? RoomTypeID { get; set; }
 
         public DateTime? ToDate { get; set; }
 

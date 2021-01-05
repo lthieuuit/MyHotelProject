@@ -20,7 +20,7 @@ namespace Model.EF
         [StringLength(50)]
         public string Status { get; set; }
 
-        [StringLength(50)]
-        public string Price { get; set; }
+    
+        public decimal? Price { get; set; }
     }
 }
