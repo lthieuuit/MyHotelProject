@@ -103,6 +103,7 @@ namespace MyHotelProject.Controllers
 
             var booking = new BookingRoom();
 
+            
             booking.RoomTypeBook = roomtypebook;
             booking.CheckinDate = checkin;
             booking.CheckoutDate = checkout;
@@ -137,17 +138,21 @@ namespace MyHotelProject.Controllers
             arrival.BookAddress = address;
             arrival.BookPhone = phone;
             arrival.Message = message;
+
+           
+
             try
             {
                 var id = new BookingDao().Insert(arrival);
                 var booking = (List<BookingRoom>)Session[BookingSession];
                 var detailDao = new Model.Dao.BookingDetailDao();
-
+                
                 foreach (var item in booking)
                 {
+                    
                     var bookingDetail = new BookingDetail();
+                    ViewBag.Name = bookingDetail.BookingID;
                     bookingDetail.RoomTypeName = item.RoomTypeBook.RoomTypeNameBook;
-                    //bookingDetail.RoomNumber = item.Room.RoomNumber;
                     bookingDetail.BookingID = id;
                     bookingDetail.CreatedDate = DateTime.Now; 
                     bookingDetail.RoomTypeID = item.RoomTypeBook.RoomTypeID;
@@ -156,7 +161,7 @@ namespace MyHotelProject.Controllers
                     bookingDetail.ToDate = item.CheckoutDate;
                     bookingDetail.Adult = item.Adult;
                     bookingDetail.Children = item.Children;
-                    bookingDetail.Price = item.RoomTypeBook.Price;                 
+                    bookingDetail.Price = item.RoomTypeBook.Price * (item.CheckoutDate - item.CheckinDate).Days * item.Quantity;
                     detailDao.Insert(bookingDetail);
                 }
             }

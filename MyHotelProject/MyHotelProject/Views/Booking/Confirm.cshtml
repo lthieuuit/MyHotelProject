@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     //var roomtypes = (List<Model.EF.RoomType>)ViewBag.RoomTypes;
     int RoomNumber = 0;
+    var data = ViewBag.Data;
 }
 @section jsFooter{
     <script src="/Assets/Client/js/bookingController.js"></script>
@@ -92,7 +93,23 @@
                             </div>
                         </div>
                         <button class="confirm-booking" type="submit">Book now</button>
-                    </form>                 
+                    </form>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="info-box">
+                        <img src="img/contact-logo.png" alt="">
+                        <ul>
+                            <li>From date</li>
+                            <li>To date</li>
+                            <li>Room qty</li>
+                            <li>Unit Price</li>
+                        </ul>
+                        <hr />
+                        <ul>
+                            @ViewBag.Name
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

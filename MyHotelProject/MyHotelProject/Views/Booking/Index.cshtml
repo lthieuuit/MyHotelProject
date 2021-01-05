@@ -16,14 +16,28 @@
     decimal sumPrice = 0;
     decimal Sum = 0;
 }
-
+<script>
+    function myFunction() {
+        var x = document.getElementById("mySelect").value;
+        document.getElementById("demo").value = x;
+    }
+    function myFunction11() {
+        var x = document.getElementById("mySelect").value;
+        alert(x);
+    }
+</script>
 @section searchfilter{
+    
     <section class="search-filter other-page-filter">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <form class="check-form" action="/Booking/Reservation" method="post">
                         <h4>Check Availability</h4>
+                        
+                        <div style="display:none" class="datepicker">
+                            <input type="text" name="roomtypebookID" id="demo" value="1">
+                        </div>
                         <div class="datepicker">
                             <p>From</p>
                             <input type="text" name="checkin" id="fromdate" class="datepicker-1" value="mm / dd / yyyy">
@@ -37,28 +51,27 @@
                         <div class="room-quantity">
                             <div class="single-quantity">
                                 <p>Adults</p>
-                                <div class="pro-qty"  id="adult"><input name="adult" class="adult-qty" type="text" value="2"></div>
+                                <div class="pro-qty" id="adult"><input name="adult" class="adult-qty" type="text" value="2"></div>
                             </div>
                             <div class="single-quantity">
                                 <p>Children</p>
-                                <div class="pro-qty"  id="children"><input name="children" class="child-qty" type="text" value="0"></div>
+                                <div class="pro-qty" id="children"><input name="children" class="child-qty" type="text" value="0"></div>
                             </div>
                             <div class="single-quantity last" id=" room_quantity">
                                 <p>Rooms</p>
-                                <div class="pro-qty"  id="room_quantity"><input name="quantity" class="room-qty" type="text" value="1"></div>
+                                <div class="pro-qty" id="room_quantity"><input name="quantity" class="room-qty" type="text" value="1"></div>
                             </div>
                         </div>
                         <div class="room-selector">
                             <p>Room Type</p>
-                            <select class="suit-select">
-
+                            <select id="mySelect" onchange="myFunction()" class="suit-select">
                                 @foreach (var item in room)
                                 {
-                                    <option name="roomtypebookID" value="">@item.ID @item.RoomTypeNameBook  (@item.Price VNĐ)</option>
+                                    <option value="@item.ID" name="roomtypebookID">@item.ID @item.RoomTypeNameBook  (@item.Price VNĐ)</option>
                                 }
                             </select>
                         </div>
-                        <button type="submit">Go</button>
+                        <button onclick="myFunction11()" type="submit">Go</button>
                     </form>
                 </div>
             </div>
