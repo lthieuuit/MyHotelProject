@@ -10,13 +10,9 @@ namespace Model.EF
     public partial class BookingDetail
     {
         [Key]
-        [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long BookingID { get; set; }
 
-        //[Key]
-        //[Column(Order = 1)]
-        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long? RoomTypeID { get; set; }
 
         public DateTime? ToDate { get; set; }

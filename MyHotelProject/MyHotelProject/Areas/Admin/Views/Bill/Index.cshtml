@@ -1,0 +1,52 @@
+﻿@model PagedList.IPagedList<Model.EF.Bill>
+@using PagedList.Mvc;
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{Hóa đơn}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>Mã hóa đơn</th>
+                                <th>Ngày lập hóa đơn</th>
+                                <th>Mã khách hàng</th>
+                                <th>Tổng</th>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr id="row_@item.BillCode">
+                                    <td>
+                                        <a href="/Admin/Bill/Edit/@item.BillCode">Sửa</a>
+                                        |
+                                        @Ajax.ActionLink("Xóa", "Delete", new { @id = item.BillCode }, new AjaxOptions
+                                    {
+                                   Confirm = "Bạn có muốn xóa đơn này?",
+                                   OnComplete = "$('#row_" + item.BillCode + "').remove()",
+                                   HttpMethod = "Delete"
+
+                               })
+                                    </td>
+                                    <td><a href="/Admin/Bill/Detail/@item.BillCode">@item.BillCode</a></td>
+                                    <td>@item.CreatedDate</td>
+                                    <td>@item.GuestID</td>
+                                    <td>@item.Total</td>
+                                </tr>
+
+                            }
+                        </tbody>
+                        <a style="margin-bottom:15px" class="btn btn-primary" href="/Admin/Bill/Create">Thêm hóa đơn</a>
+                    </table>
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = ViewBag.SearchString }))
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

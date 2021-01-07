@@ -1,0 +1,76 @@
+﻿@model PagedList.IPagedList<Model.EF.Booking>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section header{Danh sách phòng}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card shadow mb-4">
+
+            <div class="card-body">
+
+                <a href="/Admin/Room/Create">Thêm</a>
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Thao tác</th>
+                                <th>ID</th>
+                                <th>Địa chỉ</th>
+                                <th>Mail</th>
+                                <th>Tên KH</th>
+                                <th>Số ĐT</th>
+                                <th>Ngày tạo</th>
+                                <th>ID CardNumber</th>
+                                <th>Ghi chú</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr id="row_@item.ID">
+                                <td>
+                                    <a href="/Admin/Booking/Edit/@item.ID">Sửa</a>
+                                    <a> | </a>
+                                    @Ajax.ActionLink("Xóa", "Delete", new { @id = item.ID }, new AjaxOptions
+                                    {
+                                   Confirm = "Bạn có muốn xóa đơn này?",
+                                   OnComplete = "$('#row_" + item.ID + "').remove()",
+                                   HttpMethod = "Delete"
+
+                               })
+                                </td>
+                                <td><a href="/Admin/BookingDetails/Index/@item.ID">@item.ID</a></td>
+                                <td>@item.BookAddress</td>
+                                <td>@item.BookEmail</td>
+                                <td>@item.BookName</td>
+                                <td>@item.BookPhone</td>
+                                <td>@item.CreatedDate</td>
+                                <td>@item.IdCardNumber</td>
+                                <td>@item.Message</td>
+                                @{
+                                    if (item.Status != 0 || item.Status != null)
+                                    {
+                                        <td>Chưa xác nhận</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Đã xác nhận</td>
+                                    }
+
+                                }
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

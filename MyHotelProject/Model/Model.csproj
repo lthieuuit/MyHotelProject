@@ -85,6 +85,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Dao\BillDao.cs" />
+    <Compile Include="Dao\BillDetailDao.cs" />
     <Compile Include="Dao\BookingDao.cs" />
     <Compile Include="Dao\BookingDetailDao.cs" />
     <Compile Include="Dao\GuestDAO.cs" />
@@ -98,7 +99,7 @@
     <Compile Include="EF\BookingDetail.cs" />
     <Compile Include="EF\Guest.cs" />
     <Compile Include="EF\Menu.cs" />
-    <Compile Include="EF\MyHotelDbContext.cs" />
+    <Compile Include="EF\Model1.cs" />
     <Compile Include="EF\Room.cs" />
     <Compile Include="EF\RoomType.cs" />
     <Compile Include="EF\RoomTypeBook.cs" />

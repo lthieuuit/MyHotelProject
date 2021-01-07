@@ -11,6 +11,7 @@ namespace Model.EF
     {
         [Key]
         [Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long BillCode { get; set; }
 
         [Key]

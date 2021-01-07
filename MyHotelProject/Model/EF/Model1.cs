@@ -47,7 +47,7 @@ namespace Model.EF
 
             modelBuilder.Entity<Room>()
                 .Property(e => e.Price)
-                .HasPrecision(18,0);
+                .HasPrecision(18, 0);
 
             modelBuilder.Entity<RoomTypeBook>()
                 .Property(e => e.Price)

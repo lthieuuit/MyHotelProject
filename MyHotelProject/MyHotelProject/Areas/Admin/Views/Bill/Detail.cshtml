@@ -1,0 +1,54 @@
+﻿@model List<Model.EF.BillDetail>
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{Chi tiết hóa đơn}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width=" " cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Thao tác</th>
+                                <th>Mã hóa đơn</th>
+                                <th>Mã khách hàng</th>
+                                <th>Số lượng</th>
+                                <th>Tổng tiền</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr id="row_@item.RoomID">
+                                    <td>
+                                        @Ajax.ActionLink("Xóa", "DeleteDetail", new { @id = item.RoomID }, new AjaxOptions
+                                        {
+                                       Confirm = "Bạn có muốn xóa đơn này?",
+                                       OnComplete = "$('#row_" + item.RoomID + "').remove()",
+                                       HttpMethod = "DeleteDetail"
+                                   })
+                                    </td>
+                                    <td>@item.BillCode</td>
+                                    <td>@item.RoomID</td>
+                                    <td>@item.Quantity</td>
+                                    <td>@item.TotalPayment</td>
+                                    <td>
+                                        <a style="margin-bottom:15px" class="btn btn-primary" href="/Admin/Bill/CreateDetail/@item.BillCode">Thêm chi tiết hóa đơn</a>
+                                    </td>
+                                </tr>
+
+                            }
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

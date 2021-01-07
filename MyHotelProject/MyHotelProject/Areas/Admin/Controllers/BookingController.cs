@@ -11,19 +11,16 @@ using System.Drawing;
 
 namespace MyHotelProject.Areas.Admin.Controllers
 {
-    public class RoomController : Controller
+    public class BookingController : Controller
     {
-        // GET: Admin/Room
+        // GET: Admin/Booking
         public ActionResult Index(int page = 1, int pageSize = 10)
         {
-            var dao = new RoomDao();
+            var dao = new BookingDao();
             var model = dao.ListAllPaging(page, pageSize);
             return View(model);
         }
-        public ActionResult Status()
-        {
-            return View();
-        }
+
         [HttpGet]
         public ActionResult Create()
         {
@@ -31,39 +28,39 @@ namespace MyHotelProject.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Room room)
+        public ActionResult Create(Booking bk)
         {
             if (ModelState.IsValid)
             {
-                var dao = new RoomDao();
+                var dao = new BookingDao();
 
-                long id = dao.Insert(room);
+                long id = dao.Insert(bk);
 
                 if (id > 0)
                 {
-                    return RedirectToAction("Index", "Room");
-                    ModelState.AddModelError("", "Thêm phòng thành công");
+                    return RedirectToAction("Index", "Booking");
+                    ModelState.AddModelError("", "Thêm đơn thành công");
                 }
-                else ModelState.AddModelError("", "Thêm phòng không thành công");
+                else ModelState.AddModelError("", "Thêm đơn không thành công");
             }
             return View("Index");
         }
         public ActionResult Edit(int id)
         {
-            var room = new RoomDao().ViewDetail(id);
-            return View(room);
+            var bk = new BookingDao().ViewDetail(id);
+            return View(bk);
         }
         [HttpPost]
-        public ActionResult Edit(Room room)
+        public ActionResult Edit(Booking bk)
         {
             if (ModelState.IsValid)
             {
-                var dao = new RoomDao();
-                var result = dao.Update(room);
+                var dao = new BookingDao();
+                var result = dao.Update(bk);
 
                 if (result)
                 {
-                    return RedirectToAction("Index", "Room");
+                    return RedirectToAction("Index", "Booking");
                 }
                 else ModelState.AddModelError("", "Cập nhật không thành công");
             }
@@ -72,7 +69,7 @@ namespace MyHotelProject.Areas.Admin.Controllers
 
         public ActionResult Delete(int id)
         {
-            new RoomDao().Delete(id);
+            new BookingDao().Delete(id);
             return RedirectToAction("Index");
         }
     }

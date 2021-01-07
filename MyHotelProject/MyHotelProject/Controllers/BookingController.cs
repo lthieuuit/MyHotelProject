@@ -151,7 +151,6 @@ namespace MyHotelProject.Controllers
                 {
                     
                     var bookingDetail = new BookingDetail();
-                    ViewBag.Name = bookingDetail.BookingID;
                     bookingDetail.RoomTypeName = item.RoomTypeBook.RoomTypeNameBook;
                     bookingDetail.BookingID = id;
                     bookingDetail.CreatedDate = DateTime.Now; 

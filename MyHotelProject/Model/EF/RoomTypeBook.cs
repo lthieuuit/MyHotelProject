@@ -13,6 +13,7 @@ namespace Model.EF
 
         public long RoomTypeID { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string RoomTypeNameBook { get; set; }
 
