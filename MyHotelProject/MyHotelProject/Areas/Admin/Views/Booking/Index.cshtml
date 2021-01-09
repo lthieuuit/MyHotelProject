@@ -53,11 +53,11 @@
                                 <td>@item.IdCardNumber</td>
                                 <td>@item.Message</td>
                                 @{
-                                    if (item.Status != 0 || item.Status != null)
+                                    if (item.Status == 0)
                                     {
                                         <td>Chưa xác nhận</td>
                                     }
-                                    else
+                                    else if (item.Status == 1)
                                     {
                                         <td>Đã xác nhận</td>
                                     }

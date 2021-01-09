@@ -62,7 +62,7 @@ namespace MyHotelProject.Areas.Admin.Controllers
                 }
                 else ModelState.AddModelError("", "Cập nhật không thành công");
             }
-            return View("Index");
+            return RedirectToAction("Index", "Booking");
         }
 
         public ActionResult Delete(int id)

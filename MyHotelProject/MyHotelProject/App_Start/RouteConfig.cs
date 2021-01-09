@@ -12,10 +12,16 @@ namespace MyHotelProject
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.MapRoute(
+              name: "About",
+              url: "gioi-thieu",
+              defaults: new { controller = "About", action = "Index", id = UrlParameter.Optional },
+              namespaces: new[] { "MyHotelProject.Controllers" }
+);
+            routes.MapRoute(
             name: "Booking Success",
             url: "hoan-thanh-don-dat-phong",
             defaults: new { controller = "Booking", action = "Success", id = UrlParameter.Optional },
-            namespaces: new[] { "Shopie.Controllers" }
+            namespaces: new[] { "MyHotelProject.Controllers" }
 );
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
