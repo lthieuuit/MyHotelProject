@@ -2,9 +2,7 @@
 @{
     ViewBag.Title = "Confirm";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    //var roomtypes = (List<Model.EF.RoomType>)ViewBag.RoomTypes;
-    int RoomNumber = 0;
-    var data = ViewBag.Data;
+    var roomtypes = (List<Model.EF.RoomType>)ViewBag.RoomTypes;
 }
 @section jsFooter{
     <script src="/Assets/Client/js/bookingController.js"></script>
@@ -13,111 +11,95 @@
     <div class="hero-area set-bg other-page" data-setbg="/Assets/Client/img/about_bg.jpg">
     </div>
 }
+@section searchfilter{
 
-<section class="search-filter other-page-filter">
+    <section class="search-filter other-page-filter">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form class="check-form">
+                        <h4>Check Availability</h4>
+
+                        <div style="display:none" class="datepicker">
+                            <input type="text" name="roomtypebookID" id="demo" value="1">
+                        </div>
+                        <div class="datepicker">
+                            <p>From</p>
+                            <input type="text" name="checkin" id="fromdate" class="datepicker-1" value="mm / dd / yyyy">
+                            <img src="/Assets/Client/img/calendar.png" alt="">
+                        </div>
+                        <div class="datepicker">
+                            <p>To</p>
+                            <input type="text" name="checkout" id="todate" class="datepicker-2" value="mm / dd / yyyy">
+                            <img src="/Assets/Client/img/calendar.png" alt="">
+                        </div>
+                        <div class="room-quantity">
+                            <div class="single-quantity">
+                                <p>Adults</p>
+                                <div class="pro-qty" id="adult"><input name="adult" class="adult-qty" type="text" value="2"></div>
+                            </div>
+                            <div class="single-quantity">
+                                <p>Children</p>
+                                <div class="pro-qty" id="children"><input name="children" class="child-qty" type="text" value="0"></div>
+                            </div>
+                            <div class="single-quantity last" id=" room_quantity">
+                                <p>Rooms</p>
+                                <div class="pro-qty" id="room_quantity"><input name="quantity" class="room-qty" type="text" value="1"></div>
+                            </div>
+                        </div>
+                        <div class="room-selector">
+                            <p>Room Type</p>
+                            <select class="suit-select">
+                        
+                            </select>
+                        </div>
+                        <button type="submit">Go</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<!-- Contact Section Begin -->
+<section class="contact-section spad" sstyle="padding-top: 160px">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <form class="check-form">
-                    <h4>Check Availability</h4>
-                    <div class="datepicker">
-                        <p>From</p>
-                        <input type="text" id="fromdate" class="datepicker-1" value="mm / dd / yyyy">
-                        <img src="/Assets/Client/img/calendar.png" alt="">
+                <div class="contact-title">
+                    <div class="section-title">
+                        <span>a memorable holliday</span>
+                        <h2>Located in the center of <br />CanJo</h2>
                     </div>
-                    <div class="datepicker">
-                        <p>To</p>
-                        <input type="text" id="todate" class="datepicker-2" value="mm / dd / yyyy">
-                        <img src="/Assets/Client/img/calendar.png" alt="">
-                    </div>
-                    <div class="room-quantity">
-                        <div class="single-quantity">
-                            <p>Adults</p>
-                            <div class="pro-qty" id="adult"><input class="adult-qty" type="text" value="0"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <form class="contact-form" action="/Booking/Confirm" method="post">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input id="name-id" type="text" name="bookname" placeholder="Full Name*" required="" oninvalid="this.setCustomValidity('Please Enter your full name')" oninput="setCustomValidity('')">
                         </div>
-                        <div class="single-quantity">
-                            <p>Children</p>
-                            <div class="pro-qty" id="children"><input class="child-qty" type="text" value="0"></div>
+                        <div class="col-lg-6">
+                            <input id="email-id" type="text" name="email" placeholder="Email*" required="" oninvalid="this.setCustomValidity('Please Enter your email')" oninput="setCustomValidity('')">
                         </div>
-                        <div class="single-quantity last" id=" room_quantity">
-                            <p>Rooms</p>
-                            <div class="pro-qty" id="room_quantity"><input class="room-qty" type="text" value="0"></div>
+                        <div class="col-lg-6">
+                            <input id="cardnumber-id" type="text" name="idnumber" placeholder="ID Number*" required="" oninvalid="this.setCustomValidity('Please Enter your ID Number')" oninput="setCustomValidity('')">
+                        </div>
+                        <div class="col-lg-6">
+                            <input id="phone-id" type="text" name="phone" placeholder="Phone*" required="" oninvalid="this.setCustomValidity('Please Enter your phone')" oninput="setCustomValidity('')">
+                        </div>
+                        <div class="col-lg-12">
+                            <input id="address-id" type="text" name="address" placeholder="Address*" required="" oninvalid="this.setCustomValidity('Please Enter your address')" oninput="setCustomValidity('')">
+                            <input id="message-id" type="text" name="message" placeholder="Message to us" required="">
                         </div>
                     </div>
-                    <div class="room-selector">
-                        <p>Choose room number</p>
-                        <select class="suit-select">
-                            @RoomNumber = @{Html.RenderAction("RoomSelect", "Booking"); }
-                        </select>
-                    </div>
-                    <button class="confirmation" type="submit">Go</button>
+                    <button class="confirm-booking" type="submit">Book now</button>
                 </form>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Contact Section Begin -->
-    <section class="contact-section spad" sstyle="padding-top: 160px">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="contact-title">
-                        <div class="section-title">
-                            <span>a memorable holliday</span>
-                            <h2>Located in the center of <br />CanJo</h2>
-                        </div>
-                        <a href="#" class="primary-btn">Get Directions</a>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-8">
-                    <form class="contact-form" action="/Booking/Confirm" method="post">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <input id="name-id" type="text" name="bookname" placeholder="Full Name*" required="" oninvalid="this.setCustomValidity('Please Enter your full name')" oninput="setCustomValidity('')">
-                            </div>
-                            <div class="col-lg-6">
-                                <input id="email-id" type="text" name="email" placeholder="Email*" required="" oninvalid="this.setCustomValidity('Please Enter your email')" oninput="setCustomValidity('')">
-                            </div>
-                            <div class="col-lg-6">
-                                <input id="cardnumber-id" type="text" name="idnumber" placeholder="ID Number*" required="" oninvalid="this.setCustomValidity('Please Enter your ID Number')" oninput="setCustomValidity('')">
-                            </div>
-                            <div class="col-lg-6">
-                                <input id="phone-id" type="text" name="phone" placeholder="Phone*" required="" oninvalid="this.setCustomValidity('Please Enter your phone')" oninput="setCustomValidity('')">
-                            </div>
-                            <div class="col-lg-12">
-                                <input id="address-id" type="text" name="address" placeholder="Address*" required="" oninvalid="this.setCustomValidity('Please Enter your address')" oninput="setCustomValidity('')">
-                                <input id="message-id" type="text" name="message" placeholder="Message to us" required="">
-                            </div>
-                        </div>
-                        <button class="confirm-booking" type="submit">Book now</button>
-                    </form>
-                </div>
-                
-                <div class="col-lg-4">
-                    <div class="info-box">
-                        <img src="img/contact-logo.png" alt="">
-                        <ul>
-                            <li>From date</li>
-                            <li>To date</li>
-                            <li>Room qty</li>
-                            <li>Unit Price</li>
-                        </ul>
-                        <hr />
-                        <ul>
-                            <p>
-                                @ViewBag.Name
-                            </p>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
 <!-- Contact Section End -->
-
-
-
