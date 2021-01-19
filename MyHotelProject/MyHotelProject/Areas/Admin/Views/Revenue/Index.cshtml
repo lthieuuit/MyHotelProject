@@ -1,0 +1,27 @@
+﻿@model Model.EF.Bill
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{Doanh thu}
+<body class="sb-nav-fixed">
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card mb-4">
+                                <div class="card-header"><i class="fas fa-chart-bar mr-1"></i></div>
+                                <div class="card-body"><canvas id="myBarChart" width="100%" height="50"></canvas></div>
+                                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>

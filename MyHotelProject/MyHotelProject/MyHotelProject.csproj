@@ -161,6 +161,7 @@
     <Compile Include="Areas\Admin\Controllers\BookingDetailsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RevenueController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoomController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoomTypeController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
@@ -387,6 +388,7 @@
     <Content Include="Areas\Admin\Views\Bill\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Bill\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\Bill\CreateDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\Revenue\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

@@ -100,6 +100,7 @@
     <Compile Include="EF\Guest.cs" />
     <Compile Include="EF\Menu.cs" />
     <Compile Include="EF\Model1.cs" />
+    <Compile Include="EF\Revenue.cs" />
     <Compile Include="EF\Room.cs" />
     <Compile Include="EF\RoomType.cs" />
     <Compile Include="EF\RoomTypeBook.cs" />

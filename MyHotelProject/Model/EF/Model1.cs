@@ -17,6 +17,7 @@ namespace Model.EF
         public virtual DbSet<Booking> Bookings { get; set; }
         public virtual DbSet<BookingDetail> BookingDetails { get; set; }
         public virtual DbSet<Guest> Guests { get; set; }
+        public virtual DbSet<Revenue> Revenues { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
         public virtual DbSet<RoomType> RoomTypes { get; set; }
         public virtual DbSet<RoomTypeBook> RoomTypeBooks { get; set; }
@@ -39,6 +40,14 @@ namespace Model.EF
 
             modelBuilder.Entity<BookingDetail>()
                 .Property(e => e.Link)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Revenue>()
+                .Property(e => e.Day)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Revenue>()
+                .Property(e => e.Total)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Room>()
