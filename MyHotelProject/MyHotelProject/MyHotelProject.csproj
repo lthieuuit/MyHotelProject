@@ -169,6 +169,7 @@
     <Compile Include="Common\CommonConstants.cs" />
     <Compile Include="Common\Encryptor.cs" />
     <Compile Include="Common\UserLogin.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
@@ -385,10 +386,10 @@
     <Content Include="Areas\Admin\Views\Booking\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Bill\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Bill\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Bill\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Bill\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\Bill\CreateDetail.cshtml" />
     <Content Include="Areas\Admin\Views\Revenue\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Bill\Edit.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -412,6 +413,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Room\Index.cshtml" />
     <Content Include="Views\Room\Create.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Booking\Index.cshtml" />
@@ -422,7 +424,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Bills\" />
     <Folder Include="Areas\Admin\Views\Base\" />
   </ItemGroup>
   <ItemGroup>

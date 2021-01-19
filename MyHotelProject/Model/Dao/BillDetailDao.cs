@@ -39,6 +39,7 @@ namespace Model.Dao
             try
             {
                 var b = db.BillDetails.Find(id);
+                
                 db.BillDetails.Remove(b);
                 db.SaveChanges();
                 return true;

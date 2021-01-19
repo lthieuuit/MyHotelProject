@@ -17,5 +17,7 @@ namespace Model.EF
         public DateTime? CreatedDate { get; set; }
 
         public decimal? Total { get; set; }
+
+        public int? Status { get; set; }
     }
 }

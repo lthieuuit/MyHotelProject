@@ -37,63 +37,6 @@ namespace MyHotelProject.Controllers
             return PartialView(model);
         }
 
-
-        //public JsonResult UpdateQuantity(string bookingModel)
-        //{
-        //    var jsonBooking = new JavaScriptSerializer().Deserialize<List<BookingRoom>>(bookingModel);
-        //    var sessioBooking = (List<BookingRoom>)Session[BookingSession];
-        //    foreach (var item in sessioBooking)
-        //    {
-        //        var jsonItem = jsonBooking.SingleOrDefault(x => x.Room.RoomNumber == item.Room.RoomNumber);
-        //        if (jsonItem != null)
-        //        {
-        //            item.Quantity = jsonItem.Quantity;
-        //        }
-        //        Session[BookingSession] = sessioBooking;
-        //    }
-        //    return Json(new
-        //    {
-        //        status = true
-        //    });
-        //}
-        //public JsonResult UpdateAdult(string bookingModel)
-        //{
-        //    var jsonBooking = new JavaScriptSerializer().Deserialize<List<BookingRoom>>(bookingModel);
-        //    var sessioBooking = (List<BookingRoom>)Session[BookingSession];
-        //    foreach (var item in sessioBooking)
-        //    {
-        //        var jsonItem = jsonBooking.SingleOrDefault(x => x.Room.RoomNumber == item.Room.RoomNumber);
-        //        if (jsonItem != null)
-        //        {
-        //            item.Adult = jsonItem.Adult;
-        //        }
-        //        Session[BookingSession] = sessioBooking;
-        //    }
-        //    return Json(new
-        //    {
-        //        status = true
-        //    });
-        //}
-        //public JsonResult UpdateChildren(string bookingModel)
-        //{
-        //    var jsonBooking = new JavaScriptSerializer().Deserialize<List<BookingRoom>>(bookingModel);
-        //    var sessioBooking = (List<BookingRoom>)Session[BookingSession];
-        //    foreach (var item in sessioBooking)
-        //    {
-        //        var jsonItem = jsonBooking.SingleOrDefault(x => x.Room.RoomNumber == item.Room.RoomNumber);
-        //        if (jsonItem != null)
-        //        {
-        //            item.Children = jsonItem.Children;
-        //            //item.Roomtype.RoomTypeName = jsonItem.Roomtype.RoomTypeName;
-        //        }
-        //        Session[BookingSession] = sessioBooking;
-        //    }
-        //    return Json(new
-        //    {
-        //        status = true
-        //    });
-        //}
-
         [HttpPost]
         public ActionResult Reservation(int roomtypebookID, DateTime checkin, DateTime checkout, int adult, int children, int quantity)
         {

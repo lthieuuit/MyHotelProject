@@ -5,7 +5,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-@section header{Danh sách phòng}
+@section header{Danh sách đơn đặt phòng}
 <div class="row">
     <div class="col-lg-12">
         <div class="card shadow mb-4">
@@ -53,11 +53,11 @@
                                 <td>@item.IdCardNumber</td>
                                 <td>@item.Message</td>
                                 @{
-                                    if (item.Status != 0 || item.Status != null)
+                                    if (item.Status == 0)
                                     {
                                         <td>Chưa xác nhận</td>
                                     }
-                                    else
+                                    else if (item.Status == 1)
                                     {
                                         <td>Đã xác nhận</td>
                                     }

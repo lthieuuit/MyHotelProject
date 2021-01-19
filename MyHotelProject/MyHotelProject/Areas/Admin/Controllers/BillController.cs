@@ -16,7 +16,7 @@ namespace MyHotelProject.Areas.Admin.Controllers
         public ActionResult Index(string searchString, int page = 1, int pageSize = 10)
         {
             var dao = new BillDao();
-            var model = dao.ListAllPaging(searchString, page, pageSize);
+            var model = dao.ListAllPaging( page, pageSize);
             ViewBag.SearchString = searchString;
             return View(model);
         }
@@ -46,9 +46,9 @@ namespace MyHotelProject.Areas.Admin.Controllers
                     
                     var daodetail = new BillDetailDao();
                     temp.BillCode = bill1.BillCode;
-                    temp.Quantity = 1;
-                    temp.RoomID = 1;
-                    temp.TotalPayment = 1;
+                    temp.Quantity = 0;
+                    temp.RoomID = 0;
+                    temp.TotalPayment = 0;
                     long iddt = daodetail.Insert(temp);
                     return RedirectToAction("Index", "Bill");
                 }
@@ -61,27 +61,30 @@ namespace MyHotelProject.Areas.Admin.Controllers
             return RedirectToAction("Index", "Bill");
 
         }
+
+        public ActionResult Edit(int id)
+        {
+            var bill = new BillDao().ViewDetail(id);
+            return View(bill);
+        }
         [HttpPost]
-        public ActionResult Edit(Bill bill1)
+        public ActionResult Edit(Bill bill)
         {
             if (ModelState.IsValid)
             {
                 var dao = new BillDao();
+                var result = dao.Update(bill);
 
-                var result = dao.Update(bill1);
                 if (result)
                 {
                     return RedirectToAction("Index", "Bill");
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Cập nhật thành công");
-                }
-
+                else ModelState.AddModelError("", "Cập nhật không thành công");
+                //return RedirectToAction("Index", "Bill");
             }
-            return RedirectToAction("Index", "Bill");
-
+            return RedirectToAction("Index");
         }
+
         public ActionResult Detail(long id)
         {
             var bill = new BillDetailDao().ViewDetail(id);

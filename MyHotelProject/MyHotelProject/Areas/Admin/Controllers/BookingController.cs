@@ -38,13 +38,15 @@ namespace MyHotelProject.Areas.Admin.Controllers
 
                 if (id > 0)
                 {
-                    return RedirectToAction("Index", "Booking");
                     ModelState.AddModelError("", "Thêm đơn thành công");
+                    return RedirectToAction("Index", "Booking");
+
                 }
                 else ModelState.AddModelError("", "Thêm đơn không thành công");
             }
             return View("Index");
         }
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             var bk = new BookingDao().ViewDetail(id);
